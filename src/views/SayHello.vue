@@ -6,7 +6,7 @@
           <v-card-text>
             <v-btn color="secondary" @click="onClickSayHello">{{ $t('Views.SayHello.hello') }}</v-btn>
 
-            <h3>Result: {{ helloFromServer }}</h3>
+            <h3>[{{timeStamp}}] {{ helloFromServer }}</h3>
           </v-card-text>
         </material-card>
       </v-flex>
@@ -23,13 +23,15 @@ import { sayHello } from '@/services'
 export default {
   data() {
     return {
-      helloFromServer: ''
+      helloFromServer: '',
+      timeStamp: ''
     }
   },
 
   methods: {
     async onClickSayHello() {
       this.helloFromServer = await sayHello()
+      this.timeStamp = new Date()
     }
   }
 }
