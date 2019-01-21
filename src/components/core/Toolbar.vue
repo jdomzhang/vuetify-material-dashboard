@@ -161,7 +161,7 @@ export default {
 
   watch: {
     '$route' (val) {
-      this.title = val.name
+      this.title = this.$title || val.name
     }
   },
 

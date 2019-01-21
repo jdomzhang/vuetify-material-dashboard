@@ -504,6 +504,7 @@ export default {
       }
     }
   },
+
   methods: {
     complete (index) {
       this.list[index] = !this.list[index]

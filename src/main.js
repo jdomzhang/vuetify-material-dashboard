@@ -31,6 +31,15 @@ Object.defineProperty(Vue.prototype, '$locale', {
   }
 })
 
+Object.defineProperty(Vue.prototype, '$title', {
+  get: function () {
+    return document.title
+  },
+  set: function (value) {
+    document.title = value
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   i18n,

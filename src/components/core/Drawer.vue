@@ -9,38 +9,17 @@
     mobile-break-point="991"
     width="260"
   >
-    <v-img
-      :src="image"
-      height="100%"
-    >
-      <v-layout
-        class="fill-height"
-        tag="v-list"
-        column
-      >
+    <v-img :src="image" height="100%">
+      <v-layout class="fill-height" tag="v-list" column>
         <v-list-tile avatar>
-          <v-list-tile-avatar
-            color="white"
-          >
-            <v-img
-              :src="logo"
-              height="34"
-              contain
-            />
+          <v-list-tile-avatar color="white">
+            <v-img :src="logo" height="34" contain/>
           </v-list-tile-avatar>
-          <v-list-tile-title class="title">
-            Vuetify MD
-          </v-list-tile-title>
+          <v-list-tile-title class="title">Vuetify MD</v-list-tile-title>
         </v-list-tile>
         <v-divider/>
-        <v-list-tile
-          v-if="responsive"
-        >
-          <v-text-field
-            class="purple-input search-input"
-            label="Search..."
-            color="purple"
-          />
+        <v-list-tile v-if="responsive">
+          <v-text-field class="purple-input search-input" label="Search..." color="purple"/>
         </v-list-tile>
         <v-list-tile
           v-for="(link, i) in links"
@@ -49,25 +28,18 @@
           :active-class="color"
           avatar
           class="v-list-item"
+          @click="$title = link.text"
         >
           <v-list-tile-action>
             <v-icon>{{ link.icon }}</v-icon>
           </v-list-tile-action>
-          <v-list-tile-title
-            v-text="link.text"
-          />
+          <v-list-tile-title v-text="link.text"/>
         </v-list-tile>
-        <v-list-tile
-          disabled
-          active-class="primary"
-          class="v-list-item v-list__tile--buy"
-        >
+        <v-list-tile disabled active-class="primary" class="v-list-item v-list__tile--buy">
           <v-list-tile-action>
             <v-icon>mdi-package-up</v-icon>
           </v-list-tile-action>
-          <v-list-tile-title class="font-weight-light">
-            Version v1.0
-          </v-list-tile-title>
+          <v-list-tile-title class="font-weight-light">Version v1.0</v-list-tile-title>
         </v-list-tile>
       </v-layout>
     </v-img>
@@ -76,82 +48,81 @@
 
 <script>
 // Utilities
-import {
-  mapMutations,
-  mapState
-} from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   data: () => ({
     logo: './img/vuetifylogo.png',
-    links: [
-      {
-        to: '/dashboard',
-        icon: 'mdi-view-dashboard',
-        text: 'Dashboard'
-      },
-      {
-        to: '/sayhello',
-        icon: 'mdi-cloud-braces',
-        text: 'Say Hello'
-      },
-      {
-        to: '/user-profile',
-        icon: 'mdi-account',
-        text: 'User Profile'
-      },
-      {
-        to: '/table-list',
-        icon: 'mdi-clipboard-outline',
-        text: 'Table List'
-      },
-      {
-        to: '/typography',
-        icon: 'mdi-format-font',
-        text: 'Typography'
-      },
-      {
-        to: '/icons',
-        icon: 'mdi-chart-bubble',
-        text: 'Icons'
-      },
-      {
-        to: '/maps',
-        icon: 'mdi-map-marker',
-        text: 'Maps'
-      },
-      {
-        to: '/notifications',
-        icon: 'mdi-bell',
-        text: 'Notifications'
-      }
-    ],
     responsive: false
   }),
   computed: {
     ...mapState('app', ['image', 'color']),
+    links() {
+      return [
+        {
+          to: '/dashboard',
+          icon: 'mdi-view-dashboard',
+          text: this.$t('Core.Drawer.dashboard')
+        },
+        {
+          to: '/sayhello',
+          icon: 'mdi-cloud-braces',
+          text: this.$t('Core.Drawer.sayHello')
+        },
+        {
+          to: '/user-profile',
+          icon: 'mdi-account',
+          text: this.$t('Core.Drawer.userProfile')
+        },
+        {
+          to: '/table-list',
+          icon: 'mdi-clipboard-outline',
+          text: this.$t('Core.Drawer.tableList')
+        },
+        {
+          to: '/typography',
+          icon: 'mdi-format-font',
+          text: this.$t('Core.Drawer.typography')
+        },
+        {
+          to: '/icons',
+          icon: 'mdi-chart-bubble',
+          text: this.$t('Core.Drawer.icons')
+        },
+        {
+          to: '/maps',
+          icon: 'mdi-map-marker',
+          text: this.$t('Core.Drawer.maps')
+        },
+        {
+          to: '/notifications',
+          icon: 'mdi-bell',
+          text: this.$t('Core.Drawer.notifications')
+        }
+      ]
+    },
     inputValue: {
-      get () {
+      get() {
         return this.$store.state.app.drawer
       },
-      set (val) {
+      set(val) {
         this.setDrawer(val)
       }
     },
-    items () {
+    items() {
       return this.$t('Layout.View.items')
     }
   },
-  mounted () {
+  mounted() {
     this.onResponsiveInverted()
     window.addEventListener('resize', this.onResponsiveInverted)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     window.removeEventListener('resize', this.onResponsiveInverted)
   },
   methods: {
     ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
-    onResponsiveInverted () {
+    onResponsiveInverted() {
       if (window.innerWidth < 991) {
         this.responsive = true
       } else {
@@ -163,25 +134,25 @@ export default {
 </script>
 
 <style lang="scss">
-  #app-drawer {
-    .v-list__tile {
-      border-radius: 4px;
+#app-drawer {
+  .v-list__tile {
+    border-radius: 4px;
 
-      &--buy {
-        margin-top: auto;
-        margin-bottom: 17px;
-      }
-    }
-
-    .v-image__image--contain {
-      top: 9px;
-      height: 60%;
-    }
-
-    .search-input {
-      margin-bottom: 30px !important;
-      padding-left: 15px;
-      padding-right: 15px;
+    &--buy {
+      margin-top: auto;
+      margin-bottom: 17px;
     }
   }
+
+  .v-image__image--contain {
+    top: 9px;
+    height: 60%;
+  }
+
+  .search-input {
+    margin-bottom: 30px !important;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
 </style>
