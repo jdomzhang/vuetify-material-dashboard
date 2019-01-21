@@ -1,22 +1,12 @@
 <template>
-  <v-container
-    fill-height
-    fluid
-  >
-    <v-layout
-      justify-center
-      align-center
-    >
+  <v-container fill-height fluid>
+    <v-layout justify-center align-center>
       <v-flex xs12>
-        <material-card
-          :text="$t('Views.SayHello.callAPI')"
-          color="green"
-          title="Rest API"
-        >
+        <material-card :text="$t('Views.SayHello.callAPI')" color="green" title="Rest API">
           <v-card-text>
-            <v-btn color="secondary">{{ $t('Views.SayHello.hello') }}
-            </v-btn>
+            <v-btn color="secondary" @click="onClickSayHello">{{ $t('Views.SayHello.hello') }}</v-btn>
 
+            <h3>Result: {{ helloFromServer }}</h3>
           </v-card-text>
         </material-card>
       </v-flex>
@@ -25,13 +15,22 @@
 </template>
 
 <style lang='scss' scoped>
-
 </style>
 
 <script>
+import { sayHello } from '@/services'
+
 export default {
-  data () {
-    return {}
+  data() {
+    return {
+      helloFromServer: ''
+    }
+  },
+
+  methods: {
+    async onClickSayHello() {
+      this.helloFromServer = await sayHello()
+    }
   }
 }
 </script>

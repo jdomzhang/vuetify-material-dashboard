@@ -5,50 +5,51 @@ let eventBus = new Vue({})
 // Vue.prototype.internalEventBus = eventBus
 
 export default {
-  showError(msg) {
+  eventBus: eventBus,
+  showError (msg) {
     this.eventBus.$emit('error', msg)
   },
-  showSuccess(msg) {
+  showSuccess (msg) {
     this.eventBus.$emit('success', msg)
   },
-  saveAdmin(admin) {
+  saveAdmin (admin) {
     localStorage.setItem('admin', JSON.stringify(admin))
   },
-  restoreAdmin(admin) {
+  restoreAdmin (admin) {
     return JSON.parse(localStorage.getItem('admin'))
   },
-  saveJwt(jwt) {
+  saveJwt (jwt) {
     localStorage.setItem('adminjwt', jwt)
   },
-  restoreJwt() {
+  restoreJwt () {
     return localStorage.getItem('adminjwt')
   },
-  // clearJwt() {
+  // clearJwt () {
   //   localStorage.removeItem('adminjwt')
   // },
-  clearStorage() {
+  clearStorage () {
     localStorage.clear()
   },
-  isAdminLoggedIn() {
+  isAdminLoggedIn () {
     return this.getTokenPayload().isValidAdmin
   },
-  isAdminExpired() {
+  isAdminExpired () {
     return this.getTokenPayload().isExpiredAdmin
   },
-  isOperator() {
+  isOperator () {
     return this.getTokenPayload().isOperator
   },
-  isSystemAdmin() {
+  isSystemAdmin () {
     return this.getTokenPayload().isSystemAdmin
   },
-  authError() {
+  authError () {
     var message = '您没有足够的权限，或者登录已超时，请重新登录'
     this.showError(message)
     localStorage.clear()
     window.location.replace('/')
     alert(message)
   },
-  getTokenPayload() {
+  getTokenPayload  () {
     var token = this.restoreJwt()
     if (!token) return {}
     try {
@@ -78,7 +79,7 @@ export default {
     }
   },
   // ajaxLoading: false,
-  createAxios() {
+  createAxios () {
     var instance = axios.create()
     var payload = this.getTokenPayload() || {}
     var admin = this.restoreAdmin() || {}
