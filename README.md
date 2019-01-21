@@ -165,7 +165,6 @@ vuetify-material-dashboard
 │       ├── Notifications.vue
 │       ├── TableList.vue
 │       ├── Typography.vue
-│       ├── Upgrade.vue
 │       └── UserProfile.vue
 ├── vue.config.js
 └── yarn.lock

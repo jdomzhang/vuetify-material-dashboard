@@ -36,11 +36,6 @@ export default [
     view: 'Notifications'
   },
   {
-    path: '/upgrade',
-    name: 'Upgrade to PRO',
-    view: 'Upgrade'
-  },
-  {
     path: '/sayhello',
     name: 'Say Hello',
     view: 'SayHello'

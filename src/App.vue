@@ -68,11 +68,9 @@ export default {
       this.snackbar = true
     },
     onLoading() {
-      console.log('on loading started...')
       this.showProgress = true
     },
     onLoadingDone() {
-      console.log('on loading stopped!')
       this.showProgress = false
     }
   },

@@ -22,6 +22,15 @@ sync(store, router)
 
 Vue.config.productionTip = false
 
+Object.defineProperty(Vue.prototype, '$locale', {
+  get: function () {
+    return i18n.locale
+  },
+  set: function (locale) {
+    i18n.locale = locale
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   i18n,

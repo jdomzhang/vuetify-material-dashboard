@@ -24,14 +24,14 @@ export default {
   data() {
     return {
       helloFromServer: '',
-      timeStamp: ''
+      timeStamp: null
     }
   },
 
   methods: {
     async onClickSayHello() {
       this.helloFromServer = await sayHello()
-      this.timeStamp = new Date()
+      this.timeStamp = this.$d(new Date(), 'long')
     }
   }
 }

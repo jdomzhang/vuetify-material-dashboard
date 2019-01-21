@@ -80,6 +80,7 @@
             </v-list>
           </v-card>
         </v-menu>
+
         <router-link
           v-ripple
           class="toolbar-items"
@@ -87,13 +88,43 @@
         >
           <v-icon color="tertiary">mdi-account</v-icon>
         </router-link>
+
+        <v-menu
+          bottom
+          left
+          content-class="dropdown-menu"
+          offset-y
+          transition="slide-y-transition">
+          <router-link
+            v-ripple
+            slot="activator"
+            class="toolbar-items"
+            to=""
+          >
+            <img :src="currLang.img">
+          </router-link>
+          <v-card>
+            <v-list dense>
+              <v-list-tile
+                v-for="(lang,code) in languages"
+                :key="code"
+                @click="onChangeLang(lang,code)"
+              >
+                <v-list-tile-action>
+                  <img :src="lang.img">
+                </v-list-tile-action>
+                <v-list-tile-title>{{lang.name}}</v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-card>
+        </v-menu>
+
       </v-flex>
     </v-toolbar-items>
   </v-toolbar>
 </template>
 
 <script>
-
 import {
   mapMutations
 } from 'vuex'
@@ -107,10 +138,26 @@ export default {
       'Another Notification',
       'Another One'
     ],
+    languages: {
+      'en-US': {
+        name: 'English',
+        img: './img/us.png'
+      },
+      'zh-CN': {
+        name: '中文',
+        img: './img/cn.png'
+      }
+    },
     title: null,
     responsive: false,
     responsiveInput: false
   }),
+
+  computed: {
+    currLang () {
+      return this.languages[this.$locale]
+    }
+  },
 
   watch: {
     '$route' (val) {
@@ -142,6 +189,9 @@ export default {
         this.responsive = false
         this.responsiveInput = true
       }
+    },
+    onChangeLang (lang, code) {
+      this.$locale = code
     }
   }
 }
