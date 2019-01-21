@@ -92,6 +92,11 @@ export default {
         text: 'Dashboard'
       },
       {
+        to: '/sayhello',
+        icon: 'mdi-cloud-braces',
+        text: 'Say Hello'
+      },
+      {
         to: '/user-profile',
         icon: 'mdi-account',
         text: 'User Profile'
