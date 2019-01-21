@@ -14,16 +14,22 @@
       v-model="snackbar"
       multi-line
       top
+      dark
       :color="isError ? 'error' : 'success'"
     >
-      {{message}}
-      <v-btn
-        dark
-        flat
+      <v-icon
+        color="white"
+        class="mr-3"
+      >
+        mdi-alert
+      </v-icon>
+      <div> {{message}} </div>
+      <v-icon
+        size="16"
         @click="snackbar = false"
       >
-        <v-icon>fa fa-times</v-icon>
-      </v-btn>
+        mdi-close-circle
+      </v-icon>
     </v-snackbar>
   </v-app>
 </template>
