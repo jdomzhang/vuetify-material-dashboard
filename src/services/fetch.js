@@ -1,6 +1,6 @@
 import global from '@/global'
 
-export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
+export default async (url = '', data = {}, type = 'GET') => {
   type = type.toUpperCase()
   if (type === 'GET') {
     let dataStr = '' // 数据拼接字符串

@@ -154,7 +154,7 @@ vuetify-material-dashboard
 │   │   ├── mutations.js
 │   │   └── state.js
 │   ├── styles
-│   │   ├── index.scss
+│   │   ├── index.styl
 │   │   └── material-dashboard
 │   ├── utils
 │   │   └── vuex.js

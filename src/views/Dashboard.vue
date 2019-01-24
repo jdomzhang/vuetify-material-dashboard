@@ -4,7 +4,7 @@
     fluid
     grid-list-xl
   >
-    <v-layout wrap>
+    <v-layout row wrap>
       <v-flex
         md12
         sm12

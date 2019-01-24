@@ -1,12 +1,17 @@
 <template>
   <v-app>
-    <core-filter />
+    <template v-if="isAdmin">
+      <core-filter />
 
-    <core-toolbar />
+      <core-toolbar />
 
-    <core-drawer />
+      <core-drawer />
 
-    <core-view />
+      <core-view />
+    </template>
+    <template v-else>
+      <core-login />
+    </template>
 
     <core-loading v-model="showProgress" />
 
@@ -34,13 +39,11 @@
   </v-app>
 </template>
 
-<style lang="scss">
-@import '@/styles/index.scss';
+<style lang="stylus">
+@import '~@/styles/index.styl'
 
-/* Remove in 1.2 */
-.v-datatable thead th.column.sortable i {
-  vertical-align: unset;
-}
+.v-datatable thead th.column.sortable i
+  vertical-align: unset
 </style>
 
 <script>
@@ -53,6 +56,12 @@ export default {
       isError: true,
       message: '',
       showProgress: false
+    }
+  },
+
+  computed: {
+    isAdmin () {
+      return global.isAdminLoggedIn()
     }
   },
 

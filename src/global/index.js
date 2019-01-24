@@ -15,7 +15,7 @@ export default {
   saveAdmin (admin) {
     localStorage.setItem('admin', JSON.stringify(admin))
   },
-  restoreAdmin (admin) {
+  restoreAdmin () {
     return JSON.parse(localStorage.getItem('admin'))
   },
   saveJwt (jwt) {
@@ -54,14 +54,12 @@ export default {
     if (!token) return {}
     try {
       var obj = JSON.parse(atob(token.replace(/.+\.(\w+)\..+/, '$1')))
-      var isAdmin = obj.aid > 0
+      var isAdmin = !!obj.isAdmin
       var isExpired = (obj.exp < Date.now() / 1000)
       var isVisitor = !!obj.visitor
       var isValidAdmin = isAdmin && !isExpired
       var isExpiredAdmin = isAdmin && isExpired
-      var isSystemAdmin = obj.at1 && isValidAdmin
-      var isOperator = obj.at2 && isValidAdmin
-      var isSalesPerson = obj.at3 && isValidAdmin
+      // var isSystemAdmin = obj.at1 && isValidAdmin
       return {
         token,
         isAdmin,
@@ -69,9 +67,7 @@ export default {
         isValidAdmin,
         isExpiredAdmin,
         isVisitor,
-        isSystemAdmin,
-        isOperator,
-        isSalesPerson,
+        // isSystemAdmin,
         ...obj
       }
     } catch (error) {

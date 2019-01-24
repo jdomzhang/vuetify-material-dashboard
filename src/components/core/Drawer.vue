@@ -133,26 +133,18 @@ export default {
 }
 </script>
 
-<style lang="scss">
-#app-drawer {
-  .v-list__tile {
-    border-radius: 4px;
-
-    &--buy {
-      margin-top: auto;
-      margin-bottom: 17px;
-    }
-  }
-
-  .v-image__image--contain {
-    top: 9px;
-    height: 60%;
-  }
-
-  .search-input {
-    margin-bottom: 30px !important;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
+<style lang="stylus">
+#app-drawer
+  .v-list__tile
+    border-radius: 4px
+    &--buy
+      margin-top: auto
+      margin-bottom: 17px
+  .v-image__image--contain
+    top: 9px
+    height: 60%
+  .search-input
+    margin-bottom: 30px !important
+    padding-left: 15px
+    padding-right: 15px
 </style>

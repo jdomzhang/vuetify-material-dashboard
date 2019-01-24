@@ -153,7 +153,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
   .v-avatar,
   .v-responsive {
     cursor: pointer;

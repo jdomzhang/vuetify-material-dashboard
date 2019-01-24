@@ -89,38 +89,29 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.v-card--material-stats {
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-
-  .v-offset {
-    display: inline-block;
-    flex: 0 1;
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: auto;
-    margin-bottom: 0 !important;
-    max-width: auto;
-    padding: 0 16px 0;
-  }
-
-  .v-card {
-    border-radius: 4px;
-    flex: 0 1 auto;
-  }
-
-  .v-card__text {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-  }
-
-  .v-card__actions {
-    flex: 1 0 100%;
-  }
-}
+<style lang="stylus">
+.v-card--material-stats
+  display: flex
+  flex-wrap: wrap
+  position: relative
+  .v-offset
+    display: inline-block
+    flex: 0 1
+    margin-top: 0
+    margin-left: 0
+    margin-right: auto
+    margin-bottom: 0 !important
+    max-width: auto
+    padding: 0 16px 0
+  .v-card
+    border-radius: 4px
+    flex: 0 1 auto
+  .v-card__text
+    display: inline-block
+    position: absolute
+    top: 0
+    right: 0
+    width: 100%
+  .v-card__actions
+    flex: 1 0 100%
 </style>
